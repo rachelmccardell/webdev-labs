@@ -1,7 +1,6 @@
 body * {
     box-sizing: border-box;
 }
-
 body {
     font-family: Arial, Helvetica, sans-serif;
     width: 360px;
@@ -10,7 +9,9 @@ body {
     border-width: 1px;
     border-color: lightgrey;
 }
-
+/*
+Add some style blocks below this line to style the card.
+*/
 img {
    width: 360px;
 }
@@ -22,7 +23,3 @@ h2, p{
 button {
     margin-left: 20px;
 }
-
-/*
-Add some style blocks below this line to style the card.
-*/
