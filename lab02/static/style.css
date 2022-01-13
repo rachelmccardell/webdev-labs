@@ -25,6 +25,11 @@ nav ul {
 
 main {
     margin: 3vh;
+    border-style: solid;
+}
+
+img {
+    width: 30%;
 }
 
 

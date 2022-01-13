@@ -6,16 +6,18 @@
     <link rel="stylesheet" href="/static/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Top Restaurant</title>
-</head>
+</head> 
 <body>
     {% include 'includes/header.html' %}
 
-    <main>
-        <p>Search location: {{city}}</p>
-        <p>Search term: {{search_term or 'None Specified'}}</p>
-        <p>Data: {{ restaurant }}</p>
-        <h2>Top Restaurant:</h2> 
-        <p>Name: {{ restaurant.get('name') }}</p>
+    <main id = "details">
+        <p>{{ restaurant.get('name') }}</p>
+        <p>{{ restaurant.display_name }}</p>
+        <img src = {{image_url}} alt = "restaurant picture">
+        <p>Rating: {{restaurant.rating}} stars</p>
+        <p>Price: {{restaurant.price}} </p>
+        <p>Number of Reviews: {{restaurant.review_count }}</p>
+        
     </main>
 </body>
 </html>
