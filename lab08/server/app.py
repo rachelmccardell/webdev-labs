@@ -28,6 +28,32 @@ async def respond_to_message(websocket, message):
             'error': 'error decoding {0}'.format(message),
             'details': 'See instructions for list of valid message formats.'}
         return await websocket.send(json.dumps(data))
+
+
+
+    type = data.get('type')
+    print(data)
+    if type == 'login':
+        logged_in_users[websocket] = data.get('username')
+        message = {
+            "type":"login",
+            "users": list(logged_in_users.values())
+        }
+        for socket in logged_in_users:
+            await socket.send(json.dumps(message))
+    elif type == 'chat':
+        for socket in logged_in_users:
+            await socket.send(json.dumps(data))
+    elif type == 'disconnect':
+        del logged_in_users[websocket]
+        message = {
+            "type":"login",
+            "users": list(logged_in_users.values())
+        }
+        for socket in logged_in_users:
+            await socket.send(json.dumps(message))
+    else:
+        print ('Read instructions')
     '''
     ******************************************************************
     * Server-Side Logic: Your Job 
@@ -79,7 +105,7 @@ async def respond_to_message(websocket, message):
     ********************************************************************/
     '''
     
-    await websocket.send(json.dumps(data))
+    #await websocket.send(json.dumps(data))
     # for sock in logged_in_users:
     #     # TODO: replace "data" with a message that conforms to
     #     # the specs above:
@@ -102,6 +128,7 @@ async def broadcast_messages(websocket, path):
 async def main():
     async with websockets.serve(broadcast_messages, "", PORT):
         await asyncio.Future()  # run forever
+
 
 if __name__ == "__main__":
     print('Starting web socket server...')
