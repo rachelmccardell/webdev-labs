@@ -1,0 +1,63 @@
+import React from 'react';
+import {getHeaders} from './utils';
+
+class BookmarkButton extends React.Component {  
+
+    constructor(props) {
+        super(props);
+        this.toggleBookmark = this.toggleBookmark.bind(this);
+        this.bookmark = this.bookmark.bind(this);
+        this.unbookmark = this.unbookmark.bind(this);
+        this.fetchPost = this.props.fetchPost.bind(this);
+    }
+ 
+    toggleBookmark(ev) {
+        if (this.props.bookmarkId) {
+            console.log('unbookmark');
+            this.unbookmark();
+        } else {
+            console.log('bookmark');
+            this.bookmark();
+        }
+    }
+
+    bookmark() {
+        fetch(`/api/posts/${this.props.postId}/bookmarks`, {
+            headers: getHeaders(),
+            method: 'POST',
+            body: JSON.stringify({post_id: this.props.postId})
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            this.fetchPost();
+        })
+    }
+
+    unbookmark() {
+       fetch(`api/posts/${this.props.postId}/bookmarks/${this.props.bookmarkId}`, {
+           headers: getHeaders(),
+           method: 'DELETE'
+       })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            this.fetchPost();
+       })
+    }
+
+    render () {
+        const bookmarkId = this.props.bookmarkId;
+        return (
+            <button role="switch"
+                className="bookmark" 
+                aria-label="Bookmark Button" 
+                aria-checked={bookmarkId ? true : false}
+                onClick={this.toggleBookmark}>
+                <i className={bookmarkId ? 'fas fa-bookmark' : 'far fa-bookmark'}></i>                        
+            </button>
+        ) 
+    }
+}
+
+export default BookmarkButton;
