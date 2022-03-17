@@ -13,7 +13,7 @@ class Suggestion extends React.Component {
     }
 
     fetchSuggestion() {
-        fetch(`/api/users/${this.state.suggestion.id}`, {
+        fetch(`/api/profile/${this.state.suggestion.id}`, {
             headers: getHeaders()
         })
         .then(response => response.json())

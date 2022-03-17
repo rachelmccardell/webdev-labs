@@ -24,7 +24,6 @@ class Stories extends React.Component {
             })
             .then(response => response.json())
             .then(data => {
-                console.log("data" + data);
                 this.setState({ stories: data });
             })
     }

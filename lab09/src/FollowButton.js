@@ -5,7 +5,7 @@ class FollowButton extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {followingId: -1}
+        this.state = {followingId: -1};
         this.toggleFollow = this.toggleFollow.bind(this);
         this.follow = this.follow.bind(this);
         this.unfollow = this.unfollow.bind(this);
@@ -27,14 +27,12 @@ class FollowButton extends React.Component {
         fetch(`/api/following/`, {
             headers: getHeaders(),
             method: 'POST',
-            body: JSON.stringify({user_id: this.props.userId}) //is this the curr user id or user we want to follow?
+            body: JSON.stringify({user_id: this.props.userId}) 
         })
         .then(response => response.json())
         .then(data => {
             console.log(data);
             this.setState({followingId: data.id});
-            //this.props.followingId = data.id;
-            this.fetchSuggestion();
         })
     }
 
@@ -47,13 +45,10 @@ class FollowButton extends React.Component {
         .then(data => {
             console.log(data);
             this.setState({followingId: -1});
-            //this.props.followingId = -1;
-            this.fetchSuggestion();
        })
     }
 
     render () {
-        //const followingId = this.props.followingId;
         const followingId = this.state.followingId;
 
         return (
