@@ -105,8 +105,8 @@ main {
     align-items: center;
 }
 .stories > div .pic {
-    min-width: 50px;
-    min-height: 50px;
+    width: 50px;
+    height: 50px;
     border: solid 3px #dbdbdb;
     border-radius: 27px;
 }
@@ -222,6 +222,11 @@ main {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.follow {
+    color: rgb(66 103 178);
+    text-decoration: none;
+    border-style: none;
+}
 .suggestions section a {
     font-size: 0.8em;
 }
@@ -322,6 +327,13 @@ div.modal .featured-image {
     background-size: cover;
     background-position: center center;
 }
+
+.user-profile p {
+    font-weight: 700;
+    font-size: 2em;
+    padding-left: 10px;
+}
+
 
 body.modal {
     overflow-y: hidden;

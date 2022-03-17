@@ -20,7 +20,7 @@ class LikeButton extends React.Component {
             this.like();
         }
     }
-
+ 
     like() {
         fetch(`/api/posts/${this.props.postId}/likes`, {
             headers: getHeaders(),
@@ -46,7 +46,7 @@ class LikeButton extends React.Component {
        })
     }
 
-    render () {
+    render () { 
         const likeId = this.props.likeId;
         return (
             <button role="switch"

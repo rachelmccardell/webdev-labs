@@ -7,14 +7,14 @@ class Post extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
+        this.state = { 
             post: this.props.model
         }
         this.fetchPost = this.fetchPost.bind(this);
     }
 
     fetchPost() {
-        fetch(`/api/posts/${this.state.posts.id}`, {
+        fetch(`/api/posts/${this.state.post.id}`, {
             headers: getHeaders()
         })
         .then(response => response.json())
