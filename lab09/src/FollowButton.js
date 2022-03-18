@@ -9,7 +9,6 @@ class FollowButton extends React.Component {
         this.toggleFollow = this.toggleFollow.bind(this);
         this.follow = this.follow.bind(this);
         this.unfollow = this.unfollow.bind(this);
-        this.fetchSuggestion = this.props.fetchSuggestion.bind(this);
     }
  
     toggleFollow(ev) {

@@ -2,15 +2,18 @@ import React from 'react';
 import {getHeaders} from './utils';
 import LikeButton from './LikeButton';
 import BookmarkButton from './BookmarkButton';
+import CommentButton from './CommentButton';
 
 class Post extends React.Component {  
 
     constructor(props) {
         super(props);
         this.state = { 
-            post: this.props.model
+            post: this.props.model,
+            commentText: ''
         }
         this.fetchPost = this.fetchPost.bind(this);
+        this.setComment = this.setComment.bind(this);
     }
 
     fetchPost() {
@@ -23,6 +26,11 @@ class Post extends React.Component {
                 {post: data}
             );
         });
+    }
+
+    setComment() {
+        console.log("curr text: " + document.getElementById(`userComment${this.state.post.id}`).value);
+        this.setState({commentText: document.getElementById(`userComment${this.state.post.id}`).value});
     }
     
     render () {
@@ -57,6 +65,13 @@ class Post extends React.Component {
                             fetchPost={this.fetchPost}/>
                     </div>
                     <p>{ post.caption }</p>
+                </div>
+                <div className="comments">
+                    <CommentButton 
+                        postModel={post}
+                        postId = {post.id}
+                        fetchPost = {this.fetchPost}
+                    />
                 </div>
             </section> 
         );     

@@ -41,16 +41,9 @@ class Suggestion extends React.Component {
                     <p className= "suggestion-text">suggested for you</p>
                 </div>
                 <div>
-                    {/* <button 
-                        className="follow" 
-                        aria-checked="false"
-                        aria-label="Follow"
-                        //data-user-id= {this.state.suggestion.id}
-                        //onclick="toggleFollow(event)"
-                        > follow</button> */}
                     <FollowButton
                         userId = {suggestion.id}
-                        fetchSuggestion={this.fetchSuggestion}/>
+                    />
                 </div>
             </section>
         );     
