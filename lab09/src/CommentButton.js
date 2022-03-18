@@ -7,13 +7,20 @@ class CommentButton extends React.Component {
         super(props);
         this.state = {commentText: ''};
         this.handleChange = this.handleChange.bind(this);
+        this._handleKeyDown = this._handleKeyDown.bind(this);
         this.postComment = this.postComment.bind(this);
+        this.textInput = React.createRef();
     }
  
     handleChange(event) {
         this.setState({commentText: event.target.value});
     }
 
+    _handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+          this.postComment();
+        }
+      }
 
     postComment() {
         const postData = {
@@ -30,6 +37,8 @@ class CommentButton extends React.Component {
             console.log(data);
             this.props.fetchPost();
         })
+        this.textInput.current.focus();
+        this.setState({commentText: ''});
     }
 
     showMostRecentComment() {
@@ -55,7 +64,9 @@ class CommentButton extends React.Component {
                     <input type="text" 
                             value={this.state.commentText}
                             placeholder="Add comment..."
-                            onChange={this.handleChange}/>
+                            ref={this.textInput}
+                            onChange={this.handleChange}
+                            onKeyDown={this._handleKeyDown}/>
                     <button 
                         className="post" 
                         onClick={this.postComment}>
